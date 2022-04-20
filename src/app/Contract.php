@@ -38,7 +38,7 @@ class Contract extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'customer_id', 'tariff_id', 'startDate', 'endDate'
+		'customer_id', 'tariff_id', 'startDate', 'endDate',
 	];
 
 	/**

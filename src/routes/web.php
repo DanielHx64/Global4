@@ -37,6 +37,10 @@ Route::get('/customer/create', 'CustomerController@create')->name('customer.crea
 Route::get('/customer/{id}', 'CustomerController@show')->name('customer.show');
 Route::post('/customer', 'CustomerController@store')->name('customer.store');
 
+// contract routs
+Route::get('/contract/create/{customerID}', 'ContractController@create')->name('contract.create');
+Route::post('/contract', 'ContractController@store')->name('contract.store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

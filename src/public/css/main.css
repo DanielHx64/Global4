@@ -10981,10 +10981,16 @@ label.required:after,
 .label.required:after {
   content: "*";
   color: red;
+  padding-left: 0.2rem;
 }
 
 .label:after {
   content: ":";
+}
+
+#servicesIndex .service:not(:first-of-type) {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 #servicesIndex .service .tariff {

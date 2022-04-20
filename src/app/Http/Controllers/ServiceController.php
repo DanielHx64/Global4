@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 
 class ServiceController extends Controller
@@ -35,15 +38,16 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
+	 */
     public function store(Request $request)
     {
 		Service::create([
 			'name' => $request->post('name'),
 			'type' => $request->post('type'),
 		]);
+		return redirect(route('service.index'))->with('message', 'Service added');
     }
 
     /**
@@ -75,7 +79,7 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

@@ -17,7 +17,6 @@ class Tariff extends Model
 		'service_id', 'contractLength', 'price',
 	];
 
-
 	/**
 	 * @return BelongsTo
 	 */

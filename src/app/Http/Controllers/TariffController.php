@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use App\Tariff;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 
 class TariffController extends Controller
@@ -26,7 +29,7 @@ class TariffController extends Controller
 	 * Store a newly created resource in storage.
 	 *
 	 * @param \Illuminate\Http\Request $request
-	 * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @return Application|RedirectResponse|Redirector
 	 */
 	public function store(Request $request)
 	{

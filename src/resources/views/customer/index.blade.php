@@ -3,39 +3,51 @@
 @section('content')
 	@if(session('message'))
 		<div id="message" class="m-auto w-50 text-center pt-1 bg-success">{{session('message')}}<div>
-				@endif
+	@endif
 
-				<div id="servicesIndex">
-					<h1>All custommers</h1>
+	<div id="servicesIndex">
+		<h1>All customers</h1>
 
-					@foreach($customers as $customer)
-						<div class="card p-4 customer">
+		@foreach($customers as $customer)
+			<div class="card p-4 customer">
+				<div class="row">
+					<div class="col-2 border-end label">Name</div><div class="col-8">{{ucwords($customer->name)}}</div>
+				</div>
+				<div class="row">
+					<div class="col-2 border-end label">Address</div><div class="col-8">{{ucwords($customer->address)}}</div>
+				</div>
+				<div class="row pt-3">
+					<p class="col-12">Customers Contracts:</p>
+					@foreach($customer->contracts ?? [] as $contract)
+						<div class="col-12 contract">
 							<div class="row">
-								<div class="col-2 border-end label">Name</div><div class="col-8">{{ucwords($customer->name)}}</div>
+								<div class="col-3 border-end label">Contract Type</div><div class="col-8">{{$contract->tariff->service->type}}</div>
 							</div>
 							<div class="row">
-								<div class="col-2 border-end label">Address</div><div class="col-8">{{ucwords($customer->address)}}</div>
+								<div class="col-3 border-end label">Contract Name</div><div class="col-8">{{$contract->tariff->service->name}}</div>
 							</div>
-							<div class="row pt-3">
-								<p class="col-12">Customers Contracts:</p>
-								@foreach($customer->contracts ?? [] as $contract)
-									<div class="col-12 contract">
-										<div class="row">
-											<div class="col-3 border-end label">Contract Length (Months)</div><div class="col-8">{{$tariff->contractLength}}</div>
-										</div>
-										<div class="row">
-											<div class="col-3 border-end label">Price</div><div class="col-8">£{{$tariff->price}}</div>
-										</div>
-									</div>
-								@endforeach
-								<div class="col-12 py-2 text-right">
-									<a href="{{route('contract.create', $service->id)}}" class="btn btn-secondary">Add new tariff</a>
-								</div>
+							<div class="row">
+								<div class="col-3 border-end label">Contract Length (Months)</div><div class="col-8">{{$contract->tariff->contractLength}}</div>
+							</div>
+							<div class="row">
+								<div class="col-3 border-end label">Contract Start</div><div class="col-8">{{$contract->startDate}}</div>
+							</div>
+							<div class="row">
+								<div class="col-3 border-end label">Contract End</div><div class="col-8">{{$contract->endDate}}</div>
+							</div>
+							<div class="row">
+								<div class="col-3 border-end label">Contract Price</div><div class="col-8">£{{$contract->tariff->price}}</div>
 							</div>
 						</div>
 					@endforeach
-					<div class="pt-3">
-						<a href="{{route('customer.create')}}" class="btn btn-secondary">Add new customer</a>
+					<div class="col-12 py-2 text-right">
+						<a href="{{route('contract.create', $customer->id)}}" class="btn btn-secondary">Add new contract</a>
 					</div>
 				</div>
-		@endsection
+			</div>
+		@endforeach
+		<div class="pt-3">
+			<a href="{{route('customer.create')}}" class="btn btn-secondary">Add new customer</a>
+		</div>
+	</div>
+@endsection

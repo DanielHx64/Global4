@@ -16,6 +16,7 @@ label, .label  {
 		&:after {
 			content: '*';
 			color: red;
+			padding-left: .2rem;
 		}
 	}
 }
@@ -28,6 +29,11 @@ label, .label  {
 
 #servicesIndex {
 	.service {
+		&:not(:first-of-type) {
+			margin-top: .5rem;
+			padding-top: .5rem;
+		}
+
 		.tariff {
 			padding: .5rem;
 
