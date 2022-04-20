@@ -1,0 +1,41 @@
+@import "app";
+
+body {
+    background: $body-bg;
+}
+
+.wrapper {
+	margin: auto;
+	padding-top: 3rem;
+	width: 70rem;
+}
+
+label, .label  {
+	text-align: right;
+	&.required {
+		&:after {
+			content: '*';
+			color: red;
+		}
+	}
+}
+
+.label {
+	&:after {
+		content: ':';
+	}
+}
+
+#servicesIndex {
+	.service {
+		.tariff {
+			padding: .5rem;
+
+			&:not(:first-of-type) {
+				border-top: $border-width solid $border-color;
+			}
+		}
+	}
+}
+
+
