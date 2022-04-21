@@ -2,36 +2,11 @@
 
 namespace App;
 
-use DateTime;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
 {
-    /**
-     * @var int $ID
-     */
-    public $ID;
-
-    /**
-     * @var int $customerID
-     */
-    public $customerID;
-
-    /**
-     * @var int $tariffID
-     */
-    public $tariffID;
-
-    /**
-     * @var dateTime $startDate
-     */
-    public $startDate;
-
-    /**
-     * @var dateTime $endDate
-     */
-    public $endDate;
-
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -39,6 +14,15 @@ class Contract extends Model
 	 */
 	protected $fillable = [
 		'customer_id', 'tariff_id', 'startDate', 'endDate',
+	];
+
+	/**
+	 *
+	 * @var string[]
+	 */
+	protected $casts = [
+		'startDate' => 'date:d-m-Y',
+		'endDate' => 'date:d-m-Y',
 	];
 
 	/**
@@ -55,5 +39,16 @@ class Contract extends Model
 	public function tariff()
 	{
 		return $this->belongsTo(Tariff::class);
+	}
+
+	/**
+	 * Prepare a date for array / JSON serialization.
+	 *
+	 * @param  \DateTimeInterface  $date
+	 * @return string
+	 */
+	protected function serializeDate(DateTimeInterface $date)
+	{
+		return $date->format('Y-m-d');
 	}
 }

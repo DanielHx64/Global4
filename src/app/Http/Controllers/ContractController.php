@@ -14,6 +14,12 @@ use Illuminate\View\View;
 
 class ContractController extends Controller
 {
+
+	public function __construct()
+	{
+		$this->middleware('can:view-customers');
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -48,8 +54,8 @@ class ContractController extends Controller
 		Contract::create([
 			'customer_id' => $request->post('customer_id'),
 			'tariff_id' => $request->post('tariff_id'),
-			'startDate' => $startDate->getTimestamp(),
-			'endDate' => $endDate->getTimestamp(),
+			'startDate' => $startDate,
+			'endDate' => $endDate,
 		]);
 		return redirect(route('customer.index'))->with('message', 'Tariff added');
 	}

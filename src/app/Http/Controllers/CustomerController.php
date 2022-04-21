@@ -11,6 +11,11 @@ use Illuminate\View\View;
 
 class CustomerController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('can:view-customers');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -19,8 +24,6 @@ class CustomerController extends Controller
 	public function index()
 	{
 		$customers = Customer::with('contracts.tariff.service')->get();
-
-		dump($customers);
 
 		return view('customer.index', [
 			'customers' => $customers,

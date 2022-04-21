@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContractsTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateContractsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contracts', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
-            $table->integer('tariff_id');
-            $table->timestamp('startDate')->nullable();
-            $table->timestamp('endDate')->nullable();
-            $table->timestamps();
+			$table->integer('role_id')->unsigned();
+			$table->integer('user_id')->unsigned();
         });
     }
 
@@ -30,6 +27,6 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contracts');
+        Schema::dropIfExists('role_user');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 	@if(session('message'))
-		<div id="message" class="m-auto w-50 text-center pt-1 bg-success">{{session('message')}}<div>
+		<div id="message" class="m-auto w-50 text-center pt-1 bg-success">{{session('message')}}</div>
 	@endif
 
 	<div id="servicesIndex">

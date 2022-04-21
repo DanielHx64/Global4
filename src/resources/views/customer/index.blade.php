@@ -2,7 +2,7 @@
 
 @section('content')
 	@if(session('message'))
-		<div id="message" class="m-auto w-50 text-center pt-1 bg-success">{{session('message')}}<div>
+		<div id="message" class="m-auto w-50 text-center pt-1 bg-success">{{session('message')}}</div>
 	@endif
 
 	<div id="servicesIndex">
@@ -30,10 +30,10 @@
 								<div class="col-3 border-end label">Contract Length (Months)</div><div class="col-8">{{$contract->tariff->contractLength}}</div>
 							</div>
 							<div class="row">
-								<div class="col-3 border-end label">Contract Start</div><div class="col-8">{{$contract->startDate}}</div>
+								<div class="col-3 border-end label">Contract Start</div><div class="col-8">{{date_format($contract->startDate,'d-m-Y')}}</div>
 							</div>
 							<div class="row">
-								<div class="col-3 border-end label">Contract End</div><div class="col-8">{{$contract->endDate}}</div>
+								<div class="col-3 border-end label">Contract End</div><div class="col-8">{{date_format($contract->endDate,'d-m-Y')}}</div>
 							</div>
 							<div class="row">
 								<div class="col-3 border-end label">Contract Price</div><div class="col-8">£{{$contract->tariff->price}}</div>

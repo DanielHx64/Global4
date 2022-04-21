@@ -11,7 +11,13 @@ use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
-    /**
+
+	public function __construct()
+	{
+		$this->middleware('can:view-services');
+	}
+
+	/**
      * Display a listing of the resource.
      *
      * @return View

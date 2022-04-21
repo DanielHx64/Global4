@@ -12,6 +12,12 @@ use Illuminate\View\View;
 
 class TariffController extends Controller
 {
+
+	public function __construct()
+	{
+		$this->middleware('can:view-services');
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

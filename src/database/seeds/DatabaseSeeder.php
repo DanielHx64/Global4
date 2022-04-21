@@ -1,6 +1,6 @@
 <?php
 
-use App\{User, Service};
+use App\{Role, User, Service};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,33 +12,55 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+		Role::truncate();
+		User::truncate();
+		DB::table('role_user')->truncate();
+		Service::truncate();
+
+		// Seed the roles
+		$superAdminRole = Role::create([
+			'name' => 'superAdmin'
+		]);
+
+		$adminRole = Role::create([
+			'name' => 'admin'
+		]);
+
+		$telecomsRole = Role::create([
+			'name' => 'telecoms'
+		]);
+
         // Seed default users
-        $user = factory(User::class)->create([
+		$superAdminUser = factory(User::class)->create([
            'name' => 'SuperAdmin',
            'email' => 'superadmin@example.com',
-           'type' => 'super'
         ]);
 
-        factory(User::class)->create([
+		$adminUser = factory(User::class)->create([
+			'name' => 'admin',
             'email' => 'admin@example.com',
-            'type' => 'admin',
         ]);
 
-        factory(User::class)->create([
-            'email' => 'admin@example.com',
-            'type' => 'agent',
+		$telecomsUser = factory(User::class)->create([
+			'name' => 'telecoms',
+            'email' => 'telecoms@example.com',
         ]);
+
+		// Seed the pivots
+		$superAdminUser->roles()->attach($superAdminRole);
+		$adminUser->roles()->attach($adminRole);
+		$telecomsUser->roles()->attach($telecomsRole);
 
         // Seed the service types
-        $ADSL = factory(Service::class)->create([
+        $ADSL = Service::create([
             'name' => 'Asymmetric digital subscriber line',
             'type' => 'ADSL'
         ]);
-        $FTTC = factory(Service::class)->create([
+        $FTTC = Service::create([
             'name' => ' Fibre to the Cabinet',
             'type' => 'FTTC'
         ]);
-        $FTTP = factory(Service::class)->create([
+        $FTTP = Service::create([
             'name' => 'Fibre to the Property',
             'type' => 'FTTP'
         ]);

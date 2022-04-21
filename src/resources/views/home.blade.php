@@ -14,8 +14,18 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
-                </div>
+					<p>{{ __('You are logged in!') }}</p>
+
+					<div class="links">
+						@can('view-services')
+							<a href="{{route('service.index')}}">Services</a>
+						@endcan
+						@can('view-customers')
+							<a href="{{route('customer.index')}}">Customers</a>
+						@endcan
+					</div>
+
+				</div>
             </div>
         </div>
     </div>
